@@ -15,7 +15,7 @@ const Agent = ({ userName }: AgentProps) => {
     const messages = [
         'Whats your name?',
         'My name is John Doe, nice to meet you!'
-    ]
+    ];
     const lastmessage = messages[messages.length-1];
     return (
         <>
@@ -40,16 +40,16 @@ const Agent = ({ userName }: AgentProps) => {
             </div>
 
             <div className='w-full flex justify-center'>
-                {messages.length > 0 && (
-                    <div className='transcript-border'>
+                {messages.length > 0 && (<div className='transcript-border'>
                         <div className='transcript'>
 
-                        <p key={lastmessage} className={cn('transition-opacity duration-500 opacity-0', 'animate-fadeIn opacity-100')}> </p>
+                        <p key={lastmessage} className={cn('transition-opacity duration-500 opacity-0', 'animate-fadeIn opacity-100')}>{lastmessage}</p>
+                        </div>
                         </div>
                 )}
                 {callStatus!=='ACTIVE' ? (
                     <button className='relative btn-call'>
-                        <span className={cn('absolute animate-ping rounded-full opacity-75', callStatus !== 'CONNECTING' & 'hidden')}/>
+                        <span className={cn('absolute animate-ping rounded-full opacity-75', callStatus !== CallStatus.CONNECTING && 'hidden')}/>
                         <span>
                             {callStatus === 'INACTIVE' || callStatus==='FINISHED'?'Call':'. . .'}
                         </span>
@@ -63,4 +63,4 @@ const Agent = ({ userName }: AgentProps) => {
     )
 }
 
-export default Agent
+export default Agent;
