@@ -12,7 +12,7 @@ const page = async({params}: RouteParams) => {
     const {id} = await params;
     const interview = await  getInterviewById(id);
     const user = await getCurrentUser();
-    console.log(interview);
+ 
 
     if(!interview) redirect('/');
 
