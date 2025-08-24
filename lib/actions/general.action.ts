@@ -39,7 +39,7 @@ export async function getLatestInterviews(params: GetLatestInterviewsParams): Pr
             .collection('interviews')
             .orderBy('createdAt', 'desc')
             .where('finalized', '==', true)
-            .where('userId', '==', userId)
+            .where('userId', '!=', userId)
             .limit(limit || 10)
             .get();
 
@@ -118,6 +118,7 @@ export async function createFeedback(params: CreateFeedbackParams) {
 
 export async function GetFeedbackByInterviewId(params : GetFeedbackByInterviewIdParams): Promise<Feedback | null>{
     const {interviewId, userId} = params;
+    console.log({interviewId, userId});
 
     const feedback = await db
     .collection('feedback')

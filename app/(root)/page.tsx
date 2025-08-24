@@ -17,6 +17,7 @@ const page = async() => {
   ]);
   const hasPastInterviews = userInterviews && userInterviews.length > 0;
   const hasUpComingInterviews = latestInterviews && latestInterviews.length > 0;
+  console.log({userInterviews, latestInterviews});
 
   return (
     <>
@@ -56,7 +57,7 @@ const page = async() => {
         <div className='interviews-section'>
           {hasUpComingInterviews?(
             latestInterviews?.map((interview) => (
-              <InterviewCard key={interview.id} {...interview} />
+              <InterviewCard key={interview.id} {...interview} userId={user?.id} />
             ))
           ):(
             <p>There are no interviews available</p>

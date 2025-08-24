@@ -9,6 +9,7 @@ import { GetFeedbackByInterviewId } from '@/lib/actions/general.action';
 
 const InterviewCard = async ({ id, userId, role, type, techstack, createdAt }: InterviewCardProps) => {
     const feedback =userId && id ? await  GetFeedbackByInterviewId({ interviewId: id, userId }) : null;
+   
     const normalizedType = /mix/gi.test(type) ? "Mixed" : type;
     const formattedDate = dayjs(feedback?.createdAt || createdAt || Date.now()).format("MMM D, YYYY");
     return (
@@ -27,7 +28,7 @@ const InterviewCard = async ({ id, userId, role, type, techstack, createdAt }: I
 
                     <div className='flex flex-row gap-5 mt-3'>
                         <div className='flex flex-row gap-2'>
-                            <Image src="/calender.svg" alt="calender" width={22} height={22} />
+                            <Image src="/calendar.svg" alt="calender" width={22} height={22} />
 
                             <p>{formattedDate}</p>
                         </div>
@@ -44,7 +45,7 @@ const InterviewCard = async ({ id, userId, role, type, techstack, createdAt }: I
                 <div className='flex flex-row justify-between'>
                     <DisplayTechIcons techStack={techstack}/>
                     <Button className="btn-primary">
-                        <Link href={feedback ?
+                        <Link href={feedback!==null ?
                             `/interview/${id}/feedback`
                             : `interview/${id}`
                         }>
