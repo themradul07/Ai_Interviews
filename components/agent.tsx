@@ -21,7 +21,7 @@ interface SavedMessage {
 }
 
 const Agent = ({ userName, userId, type, interviewId, questions }: AgentProps) => {
-    console.log('Agent component props:', { userName, userId, type });
+   
     const router = useRouter();
     const [isSpeaking, setIsSpeaking] = useState(false);
     const [callStatus, setCallStatus] = useState<CallStatus>(CallStatus.INACTIVE);
@@ -68,14 +68,14 @@ const Agent = ({ userName, userId, type, interviewId, questions }: AgentProps) =
     }, []);
 
     const handleGenerateFeedback = async (messages: SavedMessage[]) => {
-        console.log('Generating feedback with messages:', messages);
+        
         const { success, feedbackId: id } = await createFeedback({
             interviewId : interviewId!,
             userId: userId!,
             transcript: messages
         })
 
-        console.log("Here we are to create the feedback:", success, id);
+      
 
         if(success && id){
             router.push(`/interview/${interviewId}/feedback`);
@@ -91,12 +91,9 @@ const Agent = ({ userName, userId, type, interviewId, questions }: AgentProps) =
                 router.push('/');
             } else {
                 console.log("Creating the feedback")
-                handleGenerateFeedback(messages);
-
-                
+                handleGenerateFeedback(messages);                
             }
         }
-
         if (callStatus === CallStatus.FINISHED) router.push('/');
 
     }, [messages, callStatus, type, userId]);

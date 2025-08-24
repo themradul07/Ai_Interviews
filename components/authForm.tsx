@@ -67,7 +67,6 @@ const AuthForm = ({ type }: { type: FormType }) => {
                 if(!idToken){
                     toast.error('Sign in failed');
                     return;
-
                 }
                 await signIn({
                     email, idToken
@@ -75,7 +74,6 @@ const AuthForm = ({ type }: { type: FormType }) => {
 
                 toast.success("Signed in successfully!");
                 router.push("/");
-
             }
 
         } catch (error) {
